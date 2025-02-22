@@ -46,7 +46,7 @@ public class BankController {
     }
 
     // TODO: API to Deposit money
-    @PutMapping("/{id}")
+    @PutMapping("/deposit/{id}")
     public ResponseEntity<Account> deposit(@PathVariable Integer id, @RequestBody Double amount) {
         try {
             Account account = bankService.depositFunds(id, amount);
