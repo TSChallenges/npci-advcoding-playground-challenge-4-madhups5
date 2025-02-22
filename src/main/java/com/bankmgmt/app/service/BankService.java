@@ -2,8 +2,6 @@ package com.bankmgmt.app.service;
 
 import com.bankmgmt.app.entity.Account;
 import org.springframework.stereotype.Service;
-
-import java.sql.SQLOutput;
 import java.util.*;
 
 @Service
