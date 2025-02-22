@@ -1,23 +1,31 @@
 package com.bankmgmt.app.entity;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Account {
+    @Id
     private Integer id;
+    @NotNull
     private String accountHolderName;
+    @NotNull
     private String accountType;
-    private Double balance;
+    @NotNull
+    @Email
     private String email;
-
-    // Constructors, getters, and setters
-
-    public Account(Integer id, String accountHolderName, String accountType, Double balance, String email) {
-        this.id = id;
-        this.accountHolderName = accountHolderName;
-        this.accountType = accountType;
-        this.balance = balance;
-        this.email = email;
-    }
-
-    // TODO: Add getters and setters
+    @Positive
+    private Double balance;
 
 
 }
