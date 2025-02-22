@@ -18,7 +18,7 @@ public class BankController {
     private BankService bankService;
 
     // TODO: API to Create a new account
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Account> createAccount(@RequestBody Account account) {
         try {
             Account createdAccount = bankService.createAccount(account.getAccountHolderName(), account.getAccountType(), account.getEmail());
@@ -29,14 +29,14 @@ public class BankController {
     }
 
     // TODO: API to Get all accounts
-    @GetMapping("/getAll")
+    @GetMapping
     public List<Account> getAllAccounts() {
         return bankService.getAllAccounts();
     }
 
     // TODO: API to Get an account by ID
-    @GetMapping("/getByID/{id}")
-    public ResponseEntity<Account> getAccountById(@PathVariable Integer id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Account> getAccountById(@PathVariable("id") Integer id) {
         try {
             Account account = bankService.getAccountById(id);
             return new ResponseEntity<>(account, HttpStatus.OK);
@@ -46,7 +46,7 @@ public class BankController {
     }
 
     // TODO: API to Deposit money
-    @PostMapping("/deposit/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Account> deposit(@PathVariable Integer id, @RequestBody Double amount) {
         try {
             Account account = bankService.depositFunds(id, amount);
@@ -57,7 +57,7 @@ public class BankController {
     }
 
     // TODO: API to Withdraw money
-    @PostMapping("/withdraw/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Account> withdraw(@PathVariable Integer id, @RequestBody Double amount) {
         try {
             Account account = bankService.withdrawFunds(id, amount);
@@ -68,7 +68,7 @@ public class BankController {
     }
 
     // TODO: API to Transfer money between accounts
-    @PostMapping("/transfer")
+    @PutMapping
     public ResponseEntity<List<Account>> transferFunds(@RequestParam Integer fromId, @RequestParam Integer toId, @RequestParam Double amount) {
         try {
             List<Account> updatedAccounts = bankService.transferFunds(fromId, toId, amount);
@@ -80,7 +80,7 @@ public class BankController {
 
 
     // TODO: API to Delete an account
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<?> deleteAccount(@PathVariable Integer id) {
         try {
             bankService.deleteAccount(id);

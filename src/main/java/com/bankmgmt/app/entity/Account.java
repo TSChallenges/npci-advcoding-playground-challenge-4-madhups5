@@ -26,6 +26,4 @@ public class Account {
     private String email;
     @Positive
     private Double balance;
-
-
 }
